@@ -1,0 +1,23 @@
+{
+  "name": "node-cmscart",
+  "version": "1.0.0",
+  "description": "Node.js Express Project - CMS and Shopping Cart with Paypal Using node.js and express with mongodb to create custom applications by creating a comprehensive project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/umng123/nodeCMS.git"
+  },
+  "author": "Umang Malhotra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/umng123/nodeCMS/issues"
+  },
+  "homepage": "https://github.com/umng123/nodeCMS#readme",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.16.4"
+  }
+}
