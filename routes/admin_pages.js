@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const Page = require('../models/page');
 
 /*
  * GET pages index
@@ -30,7 +31,42 @@ router.post('/add-page', function (req, res) {
             content: content
         });
     } else {
-        console.log('success');
+        Page.findOne({ slug: slug })
+            .then(page => {
+                if (page) {
+                    req.flash('danger', 'Page slug already exists, choose another.');
+                    res.render('admin/add_page', {
+                        title: title,
+                        slug: slug,
+                        content: content
+                    });
+                }
+                else {
+                    let page = new Page({
+                        title: title,
+                        slug: slug,
+                        content: content,
+                        sorting: 0
+                    });
+
+                    page.save(function (err) {
+                        if (err)
+                            return console.log(err);
+                        req.flash('success', 'Page added!');
+                        res.redirect('/admin/pages');
+                    });
+                }
+
+            })
+            .catch(err => {
+                console.log('Error in finding page', err);
+                req.flash('danger', 'Error in finding/saving page - db error.');
+                res.render('admin/add_page', {
+                    title: title,
+                    slug: slug,
+                    content: content
+                });
+            });
     }
 });
 
