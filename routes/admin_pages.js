@@ -6,7 +6,15 @@ const Page = require('../models/page');
  * GET pages index
 */
 router.get('/', function (req, res) {
-    res.send('Admin Area');
+    Page.find({}).sort({sorting: 1}).exec()
+        .then(pages => {
+            res.render('admin/pages',{
+                pages: pages
+            })
+        })
+        .catch(err => {
+            console.log("err in getting pages form Page moder",err);
+        });
 });
 
 /*
@@ -46,7 +54,7 @@ router.post('/add-page', function (req, res) {
                         title: title,
                         slug: slug,
                         content: content,
-                        sorting: 0
+                        sorting: 100
                     });
 
                     page.save(function (err) {
