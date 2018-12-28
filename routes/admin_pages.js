@@ -101,5 +101,23 @@ router.post('/reorder-pages', function (req, res) {
     console.log(req.body);
 });
 
+/*
+ * GET edit page
+*/
+router.get('/edit-page/:slug', function (req, res) {
+    Page.findOne({slug: req.params.slug})
+        .then(page => {
+            res.render('admin/edit_page', {
+                title: page.title,
+                slug: page.slug,
+                content: page.content,
+                id: page._id
+            });
+        })
+        .catch(err => {
+            return console.log(err);
+        });
+});
+
 // Exports
 module.exports = router;
