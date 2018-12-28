@@ -6,7 +6,7 @@
 
 <table class = "table table-striped">
     <thead>
-        <tr>
+        <tr class ="home">
             <th>Title</th>
             <th>Edit</th>
             <th>Delete</th>
@@ -14,7 +14,7 @@
     </thead>
     <tbody>
         <% pages.forEach(function(page) { %>
-            <tr>
+            <tr id="id_<%= page._id %>" class="<%= page.slug %>">
                 <td><%= page.title %></td>
                 <td><a href ="/admin/pages/edit-page/<%= page.slug %>">Edit</a></td>
                 <% if (page.slug == "home"){ %>
@@ -26,5 +26,22 @@
         <% }) %>
     </tbody>
 </table>
+<script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" ></script>
+<script>
+
+        $('tbody').sortable({
+            
+            items: "tr:not('.home')",
+            placeholder: "ui-state-hightlight",
+            update: function(){
+                var ids = $('tbody').sortable();
+                var url = "/admin/pages/reorder-pages";
+    
+                $.post(url, ids);
+            }
+        
+        });
+    
+</script>
 
 <%- include('../_layouts/adminfooter') %>

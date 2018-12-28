@@ -93,6 +93,13 @@ router.get('/add-page', function (req, res) {
     });
 });
 
+/*
+ * POST reorder pages
+*/
+router.post('/reorder-pages', function (req, res) {
+    console.log("reached here");
+    console.log(req.body);
+});
 
 // Exports
 module.exports = router;
