@@ -6,16 +6,15 @@ const Category = require('../models/category');
  * GET pages index
 */
 router.get('/', function (req, res) {
-	res.send('category index');
-    // Page.find({}).sort({ sorting: 1 }).exec()
-    //     .then(pages => {
-    //         res.render('admin/pages', {
-    //             pages: pages
-    //         })
-    //     })
-    //     .catch(err => {
-    //         console.log("err in getting pages form Page moder", err);
-    //     });
+    Category.find()
+        .then(categories => {
+            res.render('admin/categories', {
+                categories: categories
+            })
+        })
+        .catch(err => {
+            return	console.log("err in getting pages form Page moder", err);
+        });
 });
 
 /*

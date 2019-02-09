@@ -20,7 +20,7 @@
                 <% if (page.slug == "home"){ %>
                     <td></td>
                 <% } else { %>
-                    <td><a class="confirmDeletion" href ="/admin/pages/delete-page/<%= page.id %>">Delete</a></td>
+                    <td><a class="confirmDeletion" href ="/admin/pages/delete-page/<%= page._id %>">Delete</a></td>
                 <% } %>
             </tr>
         <% }) %>
