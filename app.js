@@ -72,9 +72,11 @@ app.use(function (req, res, next) {
 // set routes
 const pages = require('./routes/pages');
 const adminPages = require('./routes/admin_pages.js');
+const adminCategories = require('./routes/admin_categories');
 
 app.use('/', pages);
 app.use('/admin/pages', adminPages);
+app.use('/admin/categories', adminCategories);
 
 //start the server
 var port = 3000;
