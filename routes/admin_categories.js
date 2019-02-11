@@ -156,12 +156,12 @@ router.post('/edit-category/:id', function (req, res) {
 });
 
 /*
- * GET delete page
+ * GET delete category
 */
-router.get('/delete-page/:id', function (req, res) {
-    Page.findByIdAndRemove(req.params.id).then(success => {
-        req.flash('success', 'Page deleted!');
-        res.redirect('/admin/pages');
+router.get('/delete-category/:id', function (req, res) {
+    Category.findByIdAndRemove(req.params.id).then(success => {
+        req.flash('success', 'Category deleted!');
+        res.redirect('/admin/categories');
     })
         .catch(err => {
             return console.log(err);
